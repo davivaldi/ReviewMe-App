@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Add Book and Review</title>
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+      crossorigin="anonymous"
+    />
+  </head>
+  <body>
+    <div class="container">
+      <div class="row justify-content-center">
+        <p><a href="/books">Home</a> | <a href="/logout">Logout</a></p>
+      </div>
+      <div class="row">
+        <h3>{{ book.title }}</h3>
+      </div>
+      <div class="row">
+        <h4>Author: {{ book.author.name }}</h4>
+      </div>
+      <div class="row">
+        <div class="col">
+          <h3>Reviews</h3>
+          {% for review in book.reviews.all %}
+          <div style="border-top-style: solid">
+            <p>Rating:{{ review.rating }}</p>
+            <p>
+              <a href="/users/{{ review.user.id }}">{{ review.user.alias }}</a>
+              says: {{ review.desc }}
+            </p>
+            <p>{{ review.created_at }}</p>
+          </div>
+          {% endfor %}
+        </div>
+        <div class="col">
+          <form class="form-horizontal" action="/books/added1" method="POST">
+            {% csrf_token %}
+            <div class="form-group">
+              <label class="control-label col-sm-3">Review:</label>
+              <div class="col-sm-9">
+                <textarea rows="4" cols="50" name="desc"></textarea>
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="control-label col-sm-3">Add a Rating 1-5</label>
+              <div class="col-sm-9">
+                <input type="text" class="form-control" name="rating" />
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="col-sm-offset-2 col-sm-10">
+                <button type="submit" class="btn btn-primary">
+                  Submit Review
+                </button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

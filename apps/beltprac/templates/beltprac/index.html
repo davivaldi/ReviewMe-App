@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+      crossorigin="anonymous"
+    />
+  </head>
+  <body>
+    <div class="container">
+            {% if messages %}
+        <ul class="messages">
+            {% for message in messages %}
+            <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+      <div class="row">
+        <div class="col">
+            <h1>Registration</h1>
+          <form class="form-group row" action="/register" method="POST">
+            {% csrf_token %}
+            <label class="control-label col-sm-2">Name:</label>
+            <div class="col-sm-10">
+              <input
+                type="text"
+                class="form-control"
+                name="name"
+                placeholder="Enter Name"
+              />
+            </div>
+            <label class="control-label col-sm-2" >Alias:</label>
+            <div class="col-sm-10">
+              <input
+                type="text"
+                class="form-control"
+                name="alias"
+                placeholder="Pick Alias"
+              />
+            </div>
+            <label class="control-label col-sm-2">Email:</label>
+            <div class="col-sm-10">
+              <input
+                type="email"
+                class="form-control"
+                name="email"
+                placeholder="Enter email"
+              />
+            </div>
+            <label class="control-label col-sm-2">Password:</label>
+            <div class="col-sm-10">
+              <input
+                type="text"
+                class="form-control"
+                name="password"
+                placeholder="Enter a Password"
+              />
+            </div>
+            <label class="control-label col-sm-2">Confirm Password:</label>
+            <div class="col-sm-10">
+              <input
+                type=""
+                class="form-control"
+                name="confirm"
+                placeholder="ReEnter Password"
+              />
+            </div>
+
+            <div class="form-group row justify-content-right">
+              <div class="col-sm-offset-2 col-sm-10 justify-content-right">
+                <button type="submit" class="btn btn-primary">Submit</button>
+              </div>
+            </div>
+          </form>
+        </div>
+
+
+
+<!-- **************************************************login************************************************************************************* -->
+        <div class="col">
+            <h1>Log In</h1>
+          <form class="form-horizontal" action="/login" method="POST">
+            {% csrf_token %}
+            <div class="form-group">
+              <label class="control-label col-sm-2">Email:</label>
+              <div class="col-sm-10">
+                <input
+                  type="email"
+                  class="form-control"
+                  name="loginEmail"
+                  placeholder="Enter email"
+                />
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="control-label col-sm-2">Password:</label>
+              <div class="col-sm-10">
+                <input
+                  type="password"
+                  class="form-control"
+                  name="loginPassword"
+                  placeholder="Enter password"
+                />
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="col-sm-offset-2 col-sm-10">
+                <div class="checkbox">
+                  <label><input type="checkbox" /> Remember me</label>
+                </div>
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="col-sm-offset-2 col-sm-10">
+                <button type="submit" class="btn btn-primary">Login</button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

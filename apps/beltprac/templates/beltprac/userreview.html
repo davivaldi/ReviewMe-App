@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Add Book and Review</title>
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+      crossorigin="anonymous"
+    />
+  </head>
+  <body>
+    <div class="container">
+      <div class="row justify-content-center">
+        <p>
+          <a href="/books">Home</a> | <a href="">Add book and Review</a> |
+          <a href="/logout">Logout</a>
+        </p>
+      </div>
+      <div class="row">
+        <div class="col">
+          <h3>User Allias: {{ thisUser.alias }}</h3>
+          <h4>Name: {{ thisUser.name }}</h4>
+          <h4>Email: {{ thisUser.email }}</h4>
+          <h4>Total Reviews:{{all_the_reviews.count}}</h4>
+        </div>
+        <div class="col">
+          <h4>
+            <ul>
+              Posted Reviews on the following books:
+            </ul>
+          </h4>
+          {% for review in thisUser.reviews.all %}
+          <p>
+            <li>
+              <a href="">{{ review.book.title }}</a>
+            </li>
+          </p>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
